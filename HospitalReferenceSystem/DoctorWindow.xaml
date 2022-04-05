@@ -1,0 +1,81 @@
+﻿<Window x:Class="HospitalReferenceSystem.DoctorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalReferenceSystem"
+        mc:Ignorable="d"
+        Title="Врачебная система" Height="500" Width="800" Background="Aquamarine" FontSize="16" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Background="Bisque">
+            <Button x:Name="button_Logout" Content="Выйти" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Label Content="ФИО: Петров Воланд Сергеевич" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="AliceBlue">
+            <Label Content="Пациент"/>
+            <ComboBox x:Name="comboBox_PatientChoose" VerticalAlignment="Center" Width="500" Margin="10,0,0,0">
+                <TextBlock Text="Иванов Иван Иванович, Шизофрения"/>
+                <TextBlock Text="Петров Сергей Владимирович, Шизофрения"/>
+            </ComboBox>
+            <Button x:Name="button_AddNewPatient" Content="Добавить пациента" Margin="10,0,0,0" VerticalAlignment="Center"/>            
+        </StackPanel>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            
+            <StackPanel Grid.Column="0">
+                <Label Content="Фамилия"/>
+                <TextBox Text="Иванов"/>
+                <Label Content="Имя"/>
+                <TextBox Text="Иван"/>
+                <Label Content="Отчество"/>
+                <TextBox Text="Иванович"/>
+                <Label Content="Номер палаты"/>
+                <TextBox Text="1"/>
+
+                <Button x:Name="button_SaveFIO" Content="Сохранить"/>
+                <Button x:Name="button_Discharge" Content="Выписать"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <Label Content="История болезни"/>
+                <ListBox x:Name="listBox_Journal" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
+                    <ListBoxItem Content="04.04.2022 12:00:00 - Поставлен диагноз: Шизофрения"/>
+                    <ListBoxItem Content="04.04.2022 12:01:00 - Переведен в палату 2"/>
+                    <ListBoxItem Content="04.04.2022 12:15:00 - Назначена процедура: Знакомство с Мастером"/>
+                    <ListBoxItem Content="04.04.2022 12:20:00 - Пройдена процедура: Знакомство с Мастером"/>
+                    <ListBoxItem Content="04.04.2022 13:00:00 - Переведен в палату 1"/>
+                    <ListBoxItem Content="04.04.2022 14:00:00 - Назначена процедура: Чтение"/>
+                    <ListBoxItem Content="04.04.2022 14:20:00 - Пройдена процедура: Чтение"/>
+                    <ListBoxItem Content="04.04.2022 15:00:00 - Снят диагноз: Шизофрения"/>
+                </ListBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <Label Content="Процедуры и обследования"/>
+                <ListBox x:Name="listBox_Procedures" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
+                    <ListBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="Отметить пройденой"/>
+                        </ContextMenu>
+                    </ListBox.ContextMenu>
+                    <ListBoxItem Content="Знакомство с Мастером - Пройдена"/>
+                    <ListBoxItem Content="Чтение - Пройдена"/>
+                </ListBox>
+                <Button x:Name="button_AddProcedure" Content="Добавить процедуру"/>
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+</Window>
