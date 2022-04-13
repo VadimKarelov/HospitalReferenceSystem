@@ -24,15 +24,25 @@ namespace HospitalReferenceSystem
             InitializeComponent();
         }
 
-        private void Login(object sender, KeyEventArgs e)
+        private void Login_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                PatienceWindow f1 = new PatienceWindow();
-                f1.Show();
-                DoctorWindow f2 = new DoctorWindow();
-                f2.Show();
+                Login();
             }
+        }
+
+        private void Login_Click(object sender, EventArgs e)
+        {
+            Login();
+        }
+
+        private void Login()
+        {
+            PatienceWindow f1 = new PatienceWindow();
+            f1.Show();
+            DoctorWindow f2 = new DoctorWindow();
+            f2.Show();
         }
     }
 }
