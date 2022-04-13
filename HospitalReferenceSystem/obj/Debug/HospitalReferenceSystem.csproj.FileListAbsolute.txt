@@ -4,12 +4,10 @@ D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSyst
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem.csproj.AssemblyReference.cache
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem.csproj.SuggestedBindingRedirects.cache
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\LoginWindow.g.cs
-D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\MainWindow.g.cs
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\App.g.cs
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem_MarkupCompile.cache
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem_MarkupCompile.lref
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\LoginWindow.baml
-D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\MainWindow.baml
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem.g.resources
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem.Properties.Resources.resources
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\HospitalReferenceSystem.csproj.GenerateResource.cache

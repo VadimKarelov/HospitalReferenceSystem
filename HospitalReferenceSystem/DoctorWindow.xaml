@@ -5,43 +5,50 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalReferenceSystem"
         mc:Ignorable="d"
-        Title="Врачебная система" Height="500" Width="800" Background="Aquamarine" FontSize="16" ResizeMode="NoResize">
+        Title="Врачебная система" Height="500" Width="800" Background="Aquamarine" FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="Bisque">
-            <Button x:Name="button_Logout" Content="Выйти" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label Content="ФИО: Петров Воланд Сергеевич" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <Button x:Name="button_Logout" Content="Выйти" VerticalAlignment="Center"/>
+            <TextBlock x:Name="textBlock_FIO" Text="ФИО: Петров Воланд Сергеевич" VerticalAlignment="Center"/>
+            <TextBlock x:Name="textBlock_Position" Text=", Психиатр" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" Background="AliceBlue">
-            <Label Content="Пациент"/>
-            <ComboBox x:Name="comboBox_PatientChoose" VerticalAlignment="Center" Width="500" Margin="10,0,0,0">
+        <Grid Grid.Row="1" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            
+            <TextBlock Text="Пациент" Grid.Column="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="comboBox_PatientChoose" Grid.Column="1" VerticalAlignment="Center">
                 <TextBlock Text="Иванов Иван Иванович, Шизофрения"/>
                 <TextBlock Text="Петров Сергей Владимирович, Шизофрения"/>
             </ComboBox>
-            <Button x:Name="button_AddNewPatient" Content="Добавить пациента" Margin="10,0,0,0" VerticalAlignment="Center"/>            
-        </StackPanel>
+            <Button x:Name="button_AddNewPatient" Content="Добавить пациента" Grid.Column="2" VerticalAlignment="Center"/>            
+        </Grid>
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
-                <ColumnDefinition Width="4*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="4*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             
             <StackPanel Grid.Column="0">
-                <Label Content="Фамилия"/>
+                <TextBlock Text="Фамилия"/>
                 <TextBox Text="Иванов"/>
-                <Label Content="Имя"/>
+                <TextBlock Text="Имя"/>
                 <TextBox Text="Иван"/>
-                <Label Content="Отчество"/>
+                <TextBlock Text="Отчество"/>
                 <TextBox Text="Иванович"/>
-                <Label Content="Номер палаты"/>
+                <TextBlock Text="Номер палаты"/>
                 <TextBox Text="1"/>
 
                 <Button x:Name="button_SaveFIO" Content="Сохранить"/>
@@ -49,7 +56,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Orientation="Vertical">
-                <Label Content="История болезни"/>
+                <TextBlock Text="История болезни"/>
                 <ListBox x:Name="listBox_Journal" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBoxItem Content="04.04.2022 12:00:00 - Поставлен диагноз: Шизофрения"/>
                     <ListBoxItem Content="04.04.2022 12:01:00 - Переведен в палату 2"/>
@@ -63,7 +70,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2" Orientation="Vertical">
-                <Label Content="Процедуры и обследования"/>
+                <TextBlock Text="Процедуры и обследования"/>
                 <ListBox x:Name="listBox_Procedures" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBox.ContextMenu>
                         <ContextMenu>

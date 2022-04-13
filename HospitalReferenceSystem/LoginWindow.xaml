@@ -8,8 +8,8 @@
         Title="Авторизация" Height="200" Width="200" Background="Aquamarine" ResizeMode="NoResize" FontSize="20">
     <Grid>
         <Label Content="Логин" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="textBox_Login" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Width="180"/>
+        <TextBox x:Name="textBox_Login" KeyUp="Login" HorizontalAlignment="Center" Margin="0,50,0,0" VerticalAlignment="Top" Width="180"/>
         <Label Content="Пароль" HorizontalAlignment="Center" Margin="0,75,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.443,-0.244"/>
-        <PasswordBox x:Name="passwordBox_Password" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="180"/>        
+        <PasswordBox x:Name="passwordBox_Password" KeyUp="Login" HorizontalAlignment="Center" Margin="0,110,0,0" VerticalAlignment="Top" Width="180"/>        
     </Grid>
 </Window>
