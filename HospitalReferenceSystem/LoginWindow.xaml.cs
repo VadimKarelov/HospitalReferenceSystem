@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,8 @@ namespace HospitalReferenceSystem
     /// </summary>
     public partial class LoginWindow : Window
     {
+        string connectionString = @"Data Source=localhost;Initial Catalog=HospitalReferenceSystemDataBase;Integrated Security=True";
+
         public LoginWindow()
         {
             InitializeComponent();
@@ -39,10 +42,79 @@ namespace HospitalReferenceSystem
 
         private void Login()
         {
-            PatienceWindow f1 = new PatienceWindow();
-            f1.Show();
-            DoctorWindow f2 = new DoctorWindow();
-            f2.Show();
+            try
+            {
+                if (GetDoctorID(textBox_Login.Text, passwordBox_Password.Password) > -1)
+                {
+                    DoctorWindow f = new DoctorWindow();
+                    f.Show();
+                    this.Close();
+                }
+                else if (GetSickID(textBox_Login.Text, passwordBox_Password.Password) > -1)
+                {
+                    PatienceWindow f = new PatienceWindow();
+                    f.Show();
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Неверный логин или пароль");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private int GetDoctorID(string login, string password)
+        {
+            int res = -1;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Doctors", connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.GetString(3) == login && reader.GetString(4) == password)
+                        {
+                            res = reader.GetInt32(0);
+                        }
+                    }
+                }
+
+                reader.Close();
+            }
+            return res;
+        }
+
+        private int GetSickID(string login, string password)
+        {
+            int res = -1;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("SELECT * FROM Sick", connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        if (reader.GetString(6) == login && reader.GetString(7) == password)
+                        {
+                            res = reader.GetInt32(0);
+                        }
+                    }
+                }
+
+                reader.Close();
+            }
+            return res;
         }
     }
 }
