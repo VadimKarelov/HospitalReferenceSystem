@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace HospitalReferenceSystem
 {
@@ -25,6 +15,9 @@ namespace HospitalReferenceSystem
         public LoginWindow()
         {
             InitializeComponent();
+
+            PatienceWindow f = new PatienceWindow(GetSickID("p1", "p1"));
+            f.ShowDialog();
         }
 
         private void Login_KeyUp(object sender, KeyEventArgs e)
@@ -47,14 +40,12 @@ namespace HospitalReferenceSystem
                 if (GetDoctorID(textBox_Login.Text, passwordBox_Password.Password) > -1)
                 {
                     DoctorWindow f = new DoctorWindow();
-                    f.Show();
-                    this.Close();
+                    f.ShowDialog();
                 }
                 else if (GetSickID(textBox_Login.Text, passwordBox_Password.Password) > -1)
                 {
-                    PatienceWindow f = new PatienceWindow();
-                    f.Show();
-                    this.Close();
+                    PatienceWindow f = new PatienceWindow(GetSickID(textBox_Login.Text, passwordBox_Password.Password));
+                    f.ShowDialog();
                 }
                 else
                 {
@@ -73,16 +64,17 @@ namespace HospitalReferenceSystem
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Doctors", connection);
+                SqlCommand command = new SqlCommand("SELECT ID, Login, Password FROM Doctors", connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        if (reader.GetString(3) == login && reader.GetString(4) == password)
+                        if (reader.GetString(1) == login && reader.GetString(2) == password)
                         {
                             res = reader.GetInt32(0);
+                            break;
                         }
                     }
                 }
@@ -98,16 +90,17 @@ namespace HospitalReferenceSystem
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT * FROM Sick", connection);
+                SqlCommand command = new SqlCommand("SELECT ID, Login, Password FROM Sick", connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
                     while (reader.Read())
                     {
-                        if (reader.GetString(6) == login && reader.GetString(7) == password)
+                        if (reader.GetString(1) == login && reader.GetString(2) == password)
                         {
                             res = reader.GetInt32(0);
+                            break;
                         }
                     }
                 }

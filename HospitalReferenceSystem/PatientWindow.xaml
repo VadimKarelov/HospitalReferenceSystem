@@ -13,9 +13,8 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal">
-            <Button x:Name="button_Logout" Grid.Row="0" Content="Выйти" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <TextBlock x:Name="textBlock_FIO" Grid.Row="0" Text="ФИО: Иванов Иван Иванович" Margin="10,0,0,0" VerticalAlignment="Center"/>
-            <TextBlock x:Name="textBlock_Diagnos" Grid.Row="0" Text=", Шизофрения" VerticalAlignment="Center"/>
+            <Button x:Name="button_Logout" Grid.Row="0" Content="Выйти" Click="Logout_Click" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+            <TextBlock x:Name="textBlock_FIO" Grid.Row="0" Text="ФИО: Иванов Иван Иванович, Шизофрения" Margin="10,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
 
         <ListBox x:Name="listBox_Journal" Grid.Row="1" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
