@@ -10,13 +10,13 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="Bisque">
             <Button x:Name="button_Logout" Content="Выйти" VerticalAlignment="Center"/>
-            <TextBlock x:Name="textBlock_FIO" Text="ФИО: Петров Воланд Сергеевич" VerticalAlignment="Center"/>
-            <TextBlock x:Name="textBlock_Position" Text=", Психиатр" VerticalAlignment="Center"/>
+            <TextBlock x:Name="textBlock_FIO" Text="ФИО: Петров Воланд Сергеевич, Психиатр" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </StackPanel>
 
         <Grid Grid.Row="1" Background="AliceBlue">
@@ -36,26 +36,44 @@
 
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            
-            <StackPanel Grid.Column="0">
-                <TextBlock Text="Фамилия"/>
-                <TextBox Text="Иванов"/>
-                <TextBlock Text="Имя"/>
-                <TextBox Text="Иван"/>
-                <TextBlock Text="Отчество"/>
-                <TextBox Text="Иванович"/>
-                <TextBlock Text="Номер палаты"/>
-                <TextBox Text="1"/>
 
+            <Grid Grid.Column="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                
+                <TextBlock Text="ФИО: " Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="textBox_FIO" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="Номер палаты: " Grid.Column="0" VerticalAlignment="Center"/>
+                <TextBox x:Name="textBox_WardNumber" Grid.Column="1" VerticalAlignment="Center"/>
+            </Grid>
+
+            <StackPanel Grid.Column="2">
                 <Button x:Name="button_SaveFIO" Content="Сохранить"/>
                 <Button x:Name="button_Discharge" Content="Выписать"/>
             </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="1" Orientation="Vertical">
+            <StackPanel Grid.Column="0" Orientation="Vertical">
                 <TextBlock Text="История болезни"/>
                 <ListBox x:Name="listBox_Journal" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBoxItem Content="04.04.2022 12:00:00 - Поставлен диагноз: Шизофрения"/>
@@ -69,7 +87,7 @@
                 </ListBox>
             </StackPanel>
 
-            <StackPanel Grid.Column="2" Orientation="Vertical">
+            <StackPanel Grid.Column="1" Orientation="Vertical">
                 <TextBlock Text="Процедуры и обследования"/>
                 <ListBox x:Name="listBox_Procedures" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBox.ContextMenu>

@@ -16,7 +16,7 @@ namespace HospitalReferenceSystem
         {
             InitializeComponent();
 
-            PatienceWindow f = new PatienceWindow(GetSickID("p1", "p1"));
+            DoctorWindow f = new DoctorWindow(GetDoctorID("d1", "d1"));
             f.ShowDialog();
         }
 
@@ -39,12 +39,12 @@ namespace HospitalReferenceSystem
             {
                 if (GetDoctorID(textBox_Login.Text, passwordBox_Password.Password) > -1)
                 {
-                    DoctorWindow f = new DoctorWindow();
+                    DoctorWindow f = new DoctorWindow(GetDoctorID(textBox_Login.Text, passwordBox_Password.Password));
                     f.ShowDialog();
                 }
                 else if (GetSickID(textBox_Login.Text, passwordBox_Password.Password) > -1)
                 {
-                    PatienceWindow f = new PatienceWindow(GetSickID(textBox_Login.Text, passwordBox_Password.Password));
+                    PatientWindow f = new PatientWindow(GetSickID(textBox_Login.Text, passwordBox_Password.Password));
                     f.ShowDialog();
                 }
                 else
