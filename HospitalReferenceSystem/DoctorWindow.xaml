@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
             
             <TextBlock Text="Пациент" Grid.Column="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="comboBox_PatientChoose" Grid.Column="1" VerticalAlignment="Center">
+            <ComboBox x:Name="comboBox_PatientChoose" Grid.Column="1" SelectionChanged="LoadPatientInfo_IndexChanged" VerticalAlignment="Center">
                 <TextBlock Text="Иванов Иван Иванович, Шизофрения"/>
                 <TextBlock Text="Петров Сергей Владимирович, Шизофрения"/>
             </ComboBox>

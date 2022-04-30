@@ -198,5 +198,50 @@ namespace HospitalReferenceSystem
             }
             return res;
         }
+
+        public static List<string> GetProcedures(int sickID)
+        {
+            List<string> res = new List<string>();
+
+            List<int> proceduresInd = new List<int>();
+            List<string> proceduresStatus = new List<string>();
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string t = "SELECT ProcedureID, Status FROM ProceduresJournal " +
+                    $"WHERE SickID = {sickID}";
+                SqlCommand command = new SqlCommand(t, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        int ind = reader.GetInt32(0);
+                        string stat = reader.GetString(1);
+
+                        if (proceduresInd.Count == 0 || proceduresInd.IndexOf(ind) == -1)
+                        {
+                            proceduresInd.Add(ind);
+                            proceduresStatus.Add(stat);
+                        }
+                        else
+                        {
+                            proceduresStatus[proceduresInd.IndexOf(ind)] = stat;
+                        }
+                    }
+                }
+
+                reader.Close();
+            }
+
+            for (int i = 0; i < proceduresInd.Count; i++)
+            {
+                res.Add($"{Query.GetProcedureNameByID(proceduresInd[i])} {proceduresStatus[i]}");
+            }
+
+            return res;
+        }
     }
 }
