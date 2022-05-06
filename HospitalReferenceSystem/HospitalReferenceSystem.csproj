@@ -55,7 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddProcedureWindow.xaml.cs">
+      <DependentUpon>AddProcedureWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Query.cs" />
+    <Page Include="AddProcedureWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DoctorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

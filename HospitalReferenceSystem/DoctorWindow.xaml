@@ -15,7 +15,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Background="Bisque">
-            <Button x:Name="button_Logout" Content="Выйти" VerticalAlignment="Center"/>
+            <Button Content="Выйти" Click="Logout_Click" VerticalAlignment="Center"/>
             <TextBlock x:Name="textBlock_FIO" Text="ФИО: Петров Воланд Сергеевич, Психиатр" VerticalAlignment="Center" Margin="10,0,0,0"/>
         </StackPanel>
 
@@ -62,7 +62,7 @@
             </Grid>
 
             <StackPanel Grid.Column="2">
-                <Button x:Name="button_SaveFIO" Content="Сохранить"/>
+                <Button Content="Сохранить" Click="Save_Click"/>
                 <Button x:Name="button_Discharge" Content="Выписать"/>
             </StackPanel>
         </Grid>
@@ -98,7 +98,7 @@
                     <ListBoxItem Content="Знакомство с Мастером - Пройдена"/>
                     <ListBoxItem Content="Чтение - Пройдена"/>
                 </ListBox>
-                <Button x:Name="button_AddProcedure" Content="Добавить процедуру"/>
+                <Button Content="Добавить процедуру" Click="AddProcedure_Click"/>
             </StackPanel>
         </Grid>
 

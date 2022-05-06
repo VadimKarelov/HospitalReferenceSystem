@@ -19,9 +19,14 @@ namespace HospitalReferenceSystem
             GetDiagnosesHistory(sickID, ref list);
             GetWardHistory(sickID, ref list);
 
-            list.Sort();
+            list.Sort((x, y) => CompareDates(x, y));
 
             return list;
+        }
+
+        public static int CompareDates(string x, string y)
+        {
+            return DateTime.Compare(DateTime.Parse(x.Remove(19)), DateTime.Parse(y.Remove(19)));
         }
 
         private static void GetProceduresHistory(int sickID, ref List<string> his)

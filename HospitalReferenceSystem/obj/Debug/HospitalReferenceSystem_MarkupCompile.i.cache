@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\App.xaml
-31108384113
+41998885495
 
-9-183625735
+101693892711
 13-1310406943
-DoctorWindow.xaml;LoginWindow.xaml;PatientWindow.xaml;
+AddProcedureWindow.xaml;DoctorWindow.xaml;LoginWindow.xaml;PatientWindow.xaml;
 
 True
 

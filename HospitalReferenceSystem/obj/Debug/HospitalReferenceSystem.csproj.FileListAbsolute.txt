@@ -18,3 +18,5 @@ D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSyst
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\DoctorWindow.baml
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\PatientWindow.g.cs
 D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\PatientWindow.baml
+D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\AddProcedureWindow.g.cs
+D:\University\2 year\DB\2 semester\HospitalReferenceSystem\HospitalReferenceSystem\obj\Debug\AddProcedureWindow.baml
