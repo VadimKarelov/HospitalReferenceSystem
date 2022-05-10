@@ -63,7 +63,7 @@
 
             <StackPanel Grid.Column="2">
                 <Button Content="Сохранить" Click="Save_Click"/>
-                <Button x:Name="button_Discharge" Content="Выписать"/>
+                <Button Content="Выписать" Click="WriteOut_Click"/>
             </StackPanel>
         </Grid>
         

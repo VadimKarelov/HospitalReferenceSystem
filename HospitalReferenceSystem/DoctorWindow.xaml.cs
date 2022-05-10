@@ -327,9 +327,77 @@ namespace HospitalReferenceSystem
                 }
 
                 GetUserInformation(currentDoctorId);
-                listBox_Journal.Items.Clear();
-                listBox_Procedures.Items.Clear();
+                //listBox_Journal.Items.Clear();
+                //listBox_Procedures.Items.Clear();
                 LoadPatients(currentDoctorId);
+            }
+        }
+
+        private void WriteOut_Click(object sender, RoutedEventArgs e)
+        {
+            if (comboBox_PatientChoose.SelectedIndex > -1)
+            {
+                // check
+                bool f = false;
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string commandText = $"SELECT Status FROM Sick WHERE ID={currentPatient}";
+                    SqlCommand command = new SqlCommand(commandText, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+                    
+                    reader.Read();
+                    f = reader.GetString(0) == "На лечении";
+                }
+
+                if (f)
+                {
+                    // update info
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string commandText = $"UPDATE Sick\n" +
+                            $"SET Status='Выписан'\n" +
+                            $"WHERE ID={currentPatient}";
+                        SqlCommand command = new SqlCommand(commandText, connection);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    // get diagnose id
+                    int dID = -1;
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string commandText = $"SELECT DiagnosisID FROM Sick WHERE ID={currentPatient}";
+                        SqlCommand command = new SqlCommand(commandText, connection);
+                        SqlDataReader reader = command.ExecuteReader();
+
+                        reader.Read();
+                        dID = reader.GetInt32(0);
+                    }
+
+                    // write to journal
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string commandText = $"INSERT DiagnosesJournal (DateTime, SickID, DoctorID, DiagnoseID, Status)\n" +
+                            $"VALUES ('{DateTime.Now}', {currentPatient}, {currentDoctorId}, {dID}, 'Снят')";
+                        SqlCommand command = new SqlCommand(commandText, connection);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    GetUserInformation(currentDoctorId);
+                    //listBox_Journal.Items.Clear();
+                    //listBox_Procedures.Items.Clear();
+                    LoadPatients(currentDoctorId);
+                }
+                else
+                {
+                    MessageBox.Show("Пациент уже выписан");
+                }
             }
         }
     }
