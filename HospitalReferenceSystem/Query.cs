@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -86,8 +87,7 @@ namespace HospitalReferenceSystem
                 if (reader.HasRows)
                 {
                     while (reader.Read())
-                    {
-                        
+                    {                        
                         his.Add($"{reader.GetDateTime(0)} - {reader.GetString(2)} {reader.GetInt32(1)}");
                     }
                 }
@@ -247,6 +247,30 @@ namespace HospitalReferenceSystem
             }
 
             return res;
+        }
+
+        public static int GetLastLoginNumber()
+        {
+            int res = -1;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                string t = "SELECT Login FROM Sick";
+                SqlCommand command = new SqlCommand(t, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        res = int.Parse(reader.GetString(0).Remove(0, 1));
+                    }
+                }
+                
+            }
+
+            return ++res;
         }
     }
 }

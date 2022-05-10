@@ -31,7 +31,7 @@
                 <TextBlock Text="Иванов Иван Иванович, Шизофрения"/>
                 <TextBlock Text="Петров Сергей Владимирович, Шизофрения"/>
             </ComboBox>
-            <Button x:Name="button_AddNewPatient" Content="Добавить пациента" Grid.Column="2" VerticalAlignment="Center"/>            
+            <Button Content="Добавить пациента" Grid.Column="2" Click="AddPatient_Click" VerticalAlignment="Center"/>            
         </Grid>
 
         <Grid Grid.Row="2">
@@ -75,7 +75,7 @@
 
             <StackPanel Grid.Column="0" Orientation="Vertical">
                 <TextBlock Text="История болезни"/>
-                <ListBox x:Name="listBox_Journal" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
+                <ListBox x:Name="listBox_Journal" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque" MaxHeight="300">
                     <ListBoxItem Content="04.04.2022 12:00:00 - Поставлен диагноз: Шизофрения"/>
                     <ListBoxItem Content="04.04.2022 12:01:00 - Переведен в палату 2"/>
                     <ListBoxItem Content="04.04.2022 12:15:00 - Назначена процедура: Знакомство с Мастером"/>
@@ -92,7 +92,7 @@
                 <ListBox x:Name="listBox_Procedures" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBox.ContextMenu>
                         <ContextMenu>
-                            <MenuItem Header="Отметить пройденой"/>
+                            <MenuItem Header="Отметить пройденой" Click="MarkProcedure"/>
                         </ContextMenu>
                     </ListBox.ContextMenu>
                     <ListBoxItem Content="Знакомство с Мастером - Пройдена"/>

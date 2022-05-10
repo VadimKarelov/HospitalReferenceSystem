@@ -26,6 +26,8 @@ namespace HospitalReferenceSystem
 
         private int currentPatient = -1;
 
+        private int currentDoctorId = -1;
+
         public DoctorWindow(int doctorId)
         {
             InitializeComponent();
@@ -36,6 +38,8 @@ namespace HospitalReferenceSystem
             listBox_Procedures.Items.Clear();
 
             LoadPatients(doctorId);
+
+            currentDoctorId = doctorId;
         }
 
         private void GetUserInformation(int doctorId)
@@ -118,6 +122,7 @@ namespace HospitalReferenceSystem
             if (currentPatient != -1)
             {
                 bool isChanged = false;
+
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();
@@ -157,6 +162,21 @@ namespace HospitalReferenceSystem
 
                     LoadPatientInfo(patientsIndexes[comboBox_PatientChoose.SelectedIndex]);
                 }
+                else
+                {
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string commandText = $"UPDATE Sick\n" +
+                            $"SET FIO = \'{textBox_FIO.Text}'\n"+
+                            $"WHERE ID = {currentPatient}";
+                        SqlCommand command = new SqlCommand(commandText, connection);
+
+                        command.ExecuteNonQuery();
+                    }
+
+                    LoadPatientInfo(patientsIndexes[comboBox_PatientChoose.SelectedIndex]);
+                }
             }
         }
 
@@ -172,7 +192,7 @@ namespace HospitalReferenceSystem
                     {
                         connection.Open();
                         string commandText = $"INSERT ProceduresJournal (DateTime, SickID, ProcedureID, Status)\n" +
-                            $"VALUES ('{DateTime.Now}', {currentPatient}, {textBox_WardNumber.Text}, 'Назначена')";
+                            $"VALUES ('{DateTime.Now}', {currentPatient}, {f.ProcedureID}, 'Назначена')";
                         SqlCommand command = new SqlCommand(commandText, connection);
                         command.ExecuteNonQuery();
                     }
@@ -185,9 +205,132 @@ namespace HospitalReferenceSystem
             }
         }
 
+        private void MarkProcedure(object sender, RoutedEventArgs e)
+        {
+            if (listBox_Procedures.SelectedIndex > -1)
+            {
+                bool f = false;
+                int index = -1;
+
+                // get procedure id
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string commandText = $"SELECT ProcedureID, Status FROM ProceduresJournal\n" +
+                        $"WHERE SickID = {currentPatient}";
+                    SqlCommand command = new SqlCommand(commandText, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            int id = reader.GetInt32(0);
+                            string status = reader.GetString(1);
+                            string name = Query.GetProcedureNameByID(id);
+
+                            if (ClearProcedure(listBox_Procedures.Items[listBox_Procedures.SelectedIndex] as string) == name)
+                            {
+                                f = status == "Назначена";
+                                index = id;
+                            }
+                        }
+                    }
+                }
+
+                if (f)
+                {
+                    // add note
+                    using (SqlConnection connection = new SqlConnection(connectionString))
+                    {
+                        connection.Open();
+                        string commandText = $"INSERT ProceduresJournal (DateTime, SickID, ProcedureID, Status)\n" +
+                            $"VALUES ('{DateTime.Now}', {currentPatient}, {index}, 'Пройдена')";
+                        SqlCommand command = new SqlCommand(commandText, connection);
+                        command.ExecuteNonQuery();
+                    }
+                    LoadPatientInfo(patientsIndexes[comboBox_PatientChoose.SelectedIndex]);
+                }
+                else
+                {
+                    MessageBox.Show("Процедура уже пройдена");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Не выбрана процедура");
+            }
+        }
+
         private void Logout_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private string ClearProcedure(string str)
+        {
+            string res = "";
+
+            int ind = str.IndexOf(" Пройдена");
+
+            if (ind >= 0)
+            {
+                res = str.Substring(0, ind);
+            }
+
+            ind = str.IndexOf(" Назначена");
+
+            if (ind >= 0)
+            {
+                res = str.Substring(0, ind);
+            }
+
+            return res;
+        }
+
+        private void AddPatient_Click(object sender, RoutedEventArgs e)
+        {
+            AddNewPatientWindow f = new AddNewPatientWindow();
+            f.ShowDialog();
+
+            if (f.DialogResult == true)
+            {
+                string fio = f.FIO;
+                int wN = f.WardNumber;
+                int diag = f.DiagnosesID;
+
+                string l = $"p{Query.GetLastLoginNumber()}";
+                string p = l;
+
+                // add patient
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string commandText = $"INSERT Sick (FIO, DiagnosisID, WardID, DoctorID, Status, Login, Password)\n" +
+                        $"VALUES ('{fio}', {diag}, {wN}, {currentDoctorId}, 'На лечении', '{l}', '{p}')";
+                    SqlCommand command = new SqlCommand(commandText, connection);
+                    
+                    command.ExecuteNonQuery();
+                }
+
+                int id = (new LoginWindow()).GetSickID(l, p);
+
+                // add note to journal
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    string commandText = $"INSERT DiagnosesJournal (DateTime, SickID, DoctorID, DiagnoseID, Status)\n" +
+                        $"VALUES ('{DateTime.Now}', {id}, {currentDoctorId}, {diag}, 'Поставлен')";
+                    SqlCommand command = new SqlCommand(commandText, connection);
+
+                    command.ExecuteNonQuery();
+                }
+
+                GetUserInformation(currentDoctorId);
+                listBox_Journal.Items.Clear();
+                listBox_Procedures.Items.Clear();
+                LoadPatients(currentDoctorId);
+            }
         }
     }
 }

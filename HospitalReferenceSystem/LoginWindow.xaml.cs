@@ -15,9 +15,6 @@ namespace HospitalReferenceSystem
         public LoginWindow()
         {
             InitializeComponent();
-
-            DoctorWindow f = new DoctorWindow(GetDoctorID("d1", "d1"));
-            f.ShowDialog();
         }
 
         private void Login_KeyUp(object sender, KeyEventArgs e)
@@ -84,7 +81,7 @@ namespace HospitalReferenceSystem
             return res;
         }
 
-        private int GetSickID(string login, string password)
+        public int GetSickID(string login, string password)
         {
             int res = -1;
             using (SqlConnection connection = new SqlConnection(connectionString))

@@ -1,0 +1,40 @@
+﻿<Window x:Class="HospitalReferenceSystem.AddNewPatientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HospitalReferenceSystem"
+        mc:Ignorable="d"
+        Title="Новый пациент" Height="250" Width="400" FontSize="16">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="4*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="ФИО" Grid.Row="0"/>
+            <TextBox x:Name="tb_FIO" Grid.Row="1"/>
+            <TextBlock Text="Поставленный диагноз" Grid.Row="2"/>
+            <ComboBox x:Name="comboBox_Diagnoses" Grid.Row="3"/>
+            <TextBlock Text="Палата" Grid.Row="4"/>
+            <TextBox x:Name="tb_WardN" Grid.Row="5"/>
+
+            <Grid Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>                    
+                </Grid.ColumnDefinitions>
+                
+                <Button Content="Добавить" Click="Add_Click" Grid.Column="0"/>
+                <Button Content="Отмена" Click="Cancel_Click" Grid.Column="1"/>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>
