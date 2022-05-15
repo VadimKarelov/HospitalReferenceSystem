@@ -80,9 +80,14 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Grid.Column="0" Orientation="Vertical">
-                <TextBlock Text="История болезни"/>
-                <ListBox x:Name="listBox_Journal" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque" MaxHeight="300">
+            <Grid Grid.Column="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="История болезни" Grid.Row="0" Background="AliceBlue"/>
+                <ListBox x:Name="listBox_Journal" Grid.Row="1" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBoxItem Content="04.04.2022 12:00:00 - Поставлен диагноз: Шизофрения"/>
                     <ListBoxItem Content="04.04.2022 12:01:00 - Переведен в палату 2"/>
                     <ListBoxItem Content="04.04.2022 12:15:00 - Назначена процедура: Знакомство с Мастером"/>
@@ -92,10 +97,10 @@
                     <ListBoxItem Content="04.04.2022 14:20:00 - Пройдена процедура: Чтение"/>
                     <ListBoxItem Content="04.04.2022 15:00:00 - Снят диагноз: Шизофрения"/>
                 </ListBox>
-            </StackPanel>
+            </Grid>
 
             <StackPanel Grid.Column="1" Orientation="Vertical">
-                <TextBlock Text="Процедуры и обследования"/>
+                <TextBlock Text="Процедуры и обследования" Background="AliceBlue"/>
                 <ListBox x:Name="listBox_Procedures" VerticalAlignment="Top" BorderThickness="5,5,5,5" BorderBrush="Bisque">
                     <ListBox.ContextMenu>
                         <ContextMenu>

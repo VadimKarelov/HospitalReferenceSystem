@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalReferenceSystem"
         mc:Ignorable="d"
-        Title="Новый пациент" Height="250" Width="400" FontSize="16">
+        Title="Новый пациент" Height="250" Width="400" Background="Aquamarine" FontSize="16">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

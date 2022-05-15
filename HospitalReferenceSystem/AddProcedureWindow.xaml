@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HospitalReferenceSystem"
         mc:Ignorable="d"
-        Title="Добавление процедуры" Height="150" Width="300" FontSize="16">
+        Title="Добавление процедуры" Height="150" Width="300" Background="Aquamarine" FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
