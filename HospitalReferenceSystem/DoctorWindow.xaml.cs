@@ -85,7 +85,7 @@ namespace HospitalReferenceSystem
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand($"SELECT FIO, DiagnosisID, WardID, Status FROM Sick WHERE ID = {patientID}", connection);
+                SqlCommand command = new SqlCommand($"SELECT FIO, DiagnosisID, WardID, Status, Login, Password FROM Sick WHERE ID = {patientID}", connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
@@ -94,6 +94,7 @@ namespace HospitalReferenceSystem
                     {
                         textBox_FIO.Text = reader.GetString(0);
                         textBox_WardNumber.Text = reader.GetInt32(2).ToString();
+                        textBlock_LoginPassword.Text = $"(Логин/Пароль)=({reader.GetString(4)}/{reader.GetString(5)})";
 
                         listBox_Journal.ItemsSource = Query.GetSickHistory(patientID);
                         listBox_Procedures.ItemsSource = Query.GetProcedures(patientID);
@@ -327,8 +328,6 @@ namespace HospitalReferenceSystem
                 }
 
                 GetUserInformation(currentDoctorId);
-                //listBox_Journal.Items.Clear();
-                //listBox_Procedures.Items.Clear();
                 LoadPatients(currentDoctorId);
             }
         }

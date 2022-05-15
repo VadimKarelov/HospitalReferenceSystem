@@ -24,7 +24,7 @@
             <TextBlock Text="Поставленный диагноз" Grid.Row="2"/>
             <ComboBox x:Name="comboBox_Diagnoses" Grid.Row="3"/>
             <TextBlock Text="Палата" Grid.Row="4"/>
-            <TextBox x:Name="tb_WardN" Grid.Row="5"/>
+            <ComboBox x:Name="cb_WardN" Grid.Row="5"/>
 
             <Grid Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>

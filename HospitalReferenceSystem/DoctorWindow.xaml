@@ -41,14 +41,21 @@
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0">
+            <Grid Grid.Column="0" Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                
+
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
                 <TextBlock Text="ФИО: " Grid.Column="0" VerticalAlignment="Center"/>
                 <TextBox x:Name="textBox_FIO" Grid.Column="1" VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="textBlock_LoginPassword" Text="(Логин/Пароль)=(/)" Grid.Row="1" Grid.Column="1"/>
             </Grid>
 
             <Grid Grid.Column="1">
