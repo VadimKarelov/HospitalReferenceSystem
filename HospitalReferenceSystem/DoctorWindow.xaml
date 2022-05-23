@@ -69,8 +69,8 @@
             </Grid>
 
             <StackPanel Grid.Column="2">
-                <Button Content="Сохранить" Click="Save_Click"/>
-                <Button Content="Выписать" Click="WriteOut_Click"/>
+                <Button Content="Сохранить" Click="Save_Click" Margin="10,5,10,5"/>
+                <Button Content="Выписать" Click="WriteOut_Click" Margin="10,5,10,5"/>
             </StackPanel>
         </Grid>
         

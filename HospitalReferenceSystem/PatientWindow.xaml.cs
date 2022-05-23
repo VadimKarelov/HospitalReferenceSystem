@@ -9,7 +9,7 @@ namespace HospitalReferenceSystem
     /// </summary>
     public partial class PatientWindow : Window
     {
-        string connectionString = @"Data Source=localhost;Initial Catalog=HospitalReferenceSystemDataBase;Integrated Security=True";
+        string connectionString = @"Data Source=localhost;Initial Catalog=HospitalReferenceSystemDataBase;Integrated Security=True;User ID=patient;Password='1'";
 
         public PatientWindow(int id)
         {
