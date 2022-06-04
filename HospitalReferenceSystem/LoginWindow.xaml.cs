@@ -61,19 +61,13 @@ namespace HospitalReferenceSystem
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT ID, Login, Password FROM Doctors", connection);
+                SqlCommand command = new SqlCommand($"SELECT ID FROM Doctors WHERE Login='{login}' AND Password='{password}'", connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        if (reader.GetString(1) == login && reader.GetString(2) == password)
-                        {
-                            res = reader.GetInt32(0);
-                            break;
-                        }
-                    }
+                    reader.Read();
+                    res = reader.GetInt32(0);
                 }
 
                 reader.Close();
@@ -87,19 +81,13 @@ namespace HospitalReferenceSystem
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("SELECT ID, Login, Password FROM Sick", connection);
+                SqlCommand command = new SqlCommand($"SELECT ID FROM Sick WHERE Login='{login}' AND Password='{password}'", connection);
                 SqlDataReader reader = command.ExecuteReader();
 
                 if (reader.HasRows)
                 {
-                    while (reader.Read())
-                    {
-                        if (reader.GetString(1) == login && reader.GetString(2) == password)
-                        {
-                            res = reader.GetInt32(0);
-                            break;
-                        }
-                    }
+                    reader.Read();
+                    res = reader.GetInt32(0);
                 }
 
                 reader.Close();
