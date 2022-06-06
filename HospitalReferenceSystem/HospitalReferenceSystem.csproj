@@ -56,7 +56,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Entities\Diagnose.cs" />
+    <Compile Include="Entities\Doctor.cs" />
     <Compile Include="Entities\Patient.cs" />
+    <Compile Include="Entities\Procedure.cs" />
+    <Compile Include="Entities\Ward.cs" />
     <Compile Include="Forms\AddNewPatientWindow.xaml.cs">
       <DependentUpon>AddNewPatientWindow.xaml</DependentUpon>
     </Compile>
