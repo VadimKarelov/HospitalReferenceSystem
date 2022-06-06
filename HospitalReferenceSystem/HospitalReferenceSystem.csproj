@@ -56,26 +56,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddNewPatientWindow.xaml.cs">
+    <Compile Include="Entities\Patient.cs" />
+    <Compile Include="Forms\AddNewPatientWindow.xaml.cs">
       <DependentUpon>AddNewPatientWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddProcedureWindow.xaml.cs">
+    <Compile Include="Forms\AddProcedureWindow.xaml.cs">
       <DependentUpon>AddProcedureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Query.cs" />
-    <Page Include="AddNewPatientWindow.xaml">
+    <Page Include="Forms\AddNewPatientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddProcedureWindow.xaml">
+    <Page Include="Forms\AddProcedureWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DoctorWindow.xaml">
+    <Page Include="Forms\DoctorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="LoginWindow.xaml">
+    <Page Include="Forms\LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,19 +84,19 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DoctorWindow.xaml.cs">
+    <Compile Include="Forms\DoctorWindow.xaml.cs">
       <DependentUpon>DoctorWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LoginWindow.xaml.cs">
+    <Compile Include="Forms\LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>
     </Compile>
-    <Page Include="PatientWindow.xaml">
+    <Page Include="Forms\PatientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PatientWindow.xaml.cs">
+    <Compile Include="Forms\PatientWindow.xaml.cs">
       <DependentUpon>PatientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
