@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
@@ -68,6 +69,8 @@
       <DependentUpon>AddProcedureWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Query.cs" />
+    <Compile Include="Tables\Request.cs" />
+    <Compile Include="Tables\TablePatient.cs" />
     <Page Include="Forms\AddNewPatientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
